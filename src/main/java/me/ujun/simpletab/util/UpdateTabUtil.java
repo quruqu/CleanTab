@@ -1,4 +1,4 @@
-package me.ujun.simpletab.utils;
+package me.ujun.simpletab.util;
 
 import me.ujun.simpletab.SimpleTab;
 import me.ujun.simpletab.config.ConfigHandler;
@@ -8,8 +8,14 @@ import org.bukkit.entity.Player;
 import me.ujun.absolutevanish.api.AbsoluteVanishAPI;
 
 public class UpdateTabUtil {
+    private final MsptTracker tracker;
 
-    public static void sendTabHeaderFooter(Player player) {
+    public UpdateTabUtil(MsptTracker tracker) {
+        this.tracker = tracker;
+    }
+
+
+    public void sendTabHeaderFooter(Player player) {
 
         String header = ConfigHandler.header;
         String footer = ConfigHandler.footer;
@@ -21,10 +27,11 @@ public class UpdateTabUtil {
     }
 
 
-    public static String replacePlaceHolders(String input, Player player) {
+    private String replacePlaceHolders(String input, Player player) {
         int ping = player.getPing();
         int online = Bukkit.getOnlinePlayers().size();
         String tps = String.format("%.2f", Math.min(Bukkit.getServer().getTPS()[0], 20.0));
+        String mspt = String.valueOf(tracker.getMspt());
 
         if (SimpleTab.isAbsoluteVanishEnabled) {
             online = exceptVanishedPlayers(online);
@@ -33,6 +40,7 @@ public class UpdateTabUtil {
         input = input.replace("%ping%", String.valueOf(ping));
         input = input.replace("%online%", String.valueOf(online));
         input = input.replace("%tps%", tps);
+        input = input.replace("%mspt%", mspt);
 
         input = ChatColor.translateAlternateColorCodes('&', input);
 

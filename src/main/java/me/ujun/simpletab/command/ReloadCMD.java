@@ -1,4 +1,4 @@
-package me.ujun.simpletab.commands;
+package me.ujun.simpletab.command;
 
 import me.ujun.simpletab.config.ConfigHandler;
 import org.bukkit.command.Command;

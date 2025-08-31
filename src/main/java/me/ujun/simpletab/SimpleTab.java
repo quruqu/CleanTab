@@ -1,9 +1,11 @@
 package me.ujun.simpletab;
 
-import me.ujun.simpletab.commands.ReloadCMD;
+import me.ujun.simpletab.command.ReloadCMD;
 import me.ujun.simpletab.config.ConfigHandler;
-import me.ujun.simpletab.listeners.PlayerJoinListener;
-import me.ujun.simpletab.utils.UpdateTabUtil;
+import me.ujun.simpletab.listener.PlayerJoinListener;
+import me.ujun.simpletab.listener.TickListener;
+import me.ujun.simpletab.util.MsptTracker;
+import me.ujun.simpletab.util.UpdateTabUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,10 +13,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class SimpleTab extends JavaPlugin {
     public static boolean isAbsoluteVanishEnabled = false;
+    private MsptTracker tracker;
+    private UpdateTabUtil tabUtil;
 
 
     @Override
     public void onEnable() {
+        tracker = new MsptTracker();
+        tabUtil = new UpdateTabUtil(tracker);
         saveDefaultConfig();
         ConfigHandler.init(this);
 
@@ -22,17 +28,20 @@ public final class SimpleTab extends JavaPlugin {
             isAbsoluteVanishEnabled = true;
         }
 
+
+
         registerListeners();
         registerCommands();
         run();
     }
 
     private void registerListeners() {
-        this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(tabUtil), this);
+        getServer().getPluginManager().registerEvents(new TickListener(tracker), this);
     }
 
     private void registerCommands() {
-        this.getCommand("simpletab-reload").setExecutor(new ReloadCMD());
+        getCommand("simpletab-reload").setExecutor(new ReloadCMD());
     }
 
     private void run() {
@@ -40,7 +49,7 @@ public final class SimpleTab extends JavaPlugin {
             @Override
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    UpdateTabUtil.sendTabHeaderFooter(p);
+                    tabUtil.sendTabHeaderFooter(p);
                 }
             }
         }.runTaskTimer(this, 0L, 20L);
