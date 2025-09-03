@@ -1,2 +1,10 @@
-Header: "&fYour Server TPS &4%tps% &fand online &4%online%"
-Footer: "&fPing &4%ping% &e%mspt%"
+#%online%: show number of online players
+#%max_online%: show maximum number of online players
+#%tps%: show server tps
+#%mspt%: show server mspt
+#%ping%: show player's ping
+
+Header: "&fMy Server!\nonline &4%online% / %max_online%"
+Footer: "&fPing &4%ping% &fMSPT &4%mspt%"
+
+UpdateDuration: 10

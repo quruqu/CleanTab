@@ -3,9 +3,9 @@ package me.ujun.simpletab;
 import me.ujun.simpletab.command.ReloadCMD;
 import me.ujun.simpletab.config.ConfigHandler;
 import me.ujun.simpletab.listener.PlayerJoinListener;
-import me.ujun.simpletab.listener.TickListener;
-import me.ujun.simpletab.util.MsptTracker;
+import me.ujun.simpletab.util.MsptUtil;
 import me.ujun.simpletab.util.UpdateTabUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,14 +13,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class SimpleTab extends JavaPlugin {
     public static boolean isAbsoluteVanishEnabled = false;
-    private MsptTracker tracker;
     private UpdateTabUtil tabUtil;
+    private static SimpleTab instance;
 
 
     @Override
     public void onEnable() {
-        tracker = new MsptTracker();
-        tabUtil = new UpdateTabUtil(tracker);
+        tabUtil = new UpdateTabUtil();
         saveDefaultConfig();
         ConfigHandler.init(this);
 
@@ -28,7 +27,9 @@ public final class SimpleTab extends JavaPlugin {
             isAbsoluteVanishEnabled = true;
         }
 
-
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            msptAvg20  = MsptUtil.averageMspt(20);   // 최근 1초 평균
+        }, 1L, 5L);
 
         registerListeners();
         registerCommands();
@@ -37,12 +38,14 @@ public final class SimpleTab extends JavaPlugin {
 
     private void registerListeners() {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(tabUtil), this);
-        getServer().getPluginManager().registerEvents(new TickListener(tracker), this);
     }
 
     private void registerCommands() {
         getCommand("simpletab-reload").setExecutor(new ReloadCMD());
     }
+
+    public static double msptAvg20;
+
 
     private void run() {
         new BukkitRunnable() {
@@ -52,8 +55,13 @@ public final class SimpleTab extends JavaPlugin {
                     tabUtil.sendTabHeaderFooter(p);
                 }
             }
-        }.runTaskTimer(this, 0L, 20L);
+        }.runTaskTimer(this, 0L, ConfigHandler.updateDuration);
     }
+
+    public static SimpleTab getInstance() {
+        return instance;
+    }
+
 }
 
 

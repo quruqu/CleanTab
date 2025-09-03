@@ -8,11 +8,7 @@ import org.bukkit.entity.Player;
 import me.ujun.absolutevanish.api.AbsoluteVanishAPI;
 
 public class UpdateTabUtil {
-    private final MsptTracker tracker;
 
-    public UpdateTabUtil(MsptTracker tracker) {
-        this.tracker = tracker;
-    }
 
 
     public void sendTabHeaderFooter(Player player) {
@@ -30,8 +26,9 @@ public class UpdateTabUtil {
     private String replacePlaceHolders(String input, Player player) {
         int ping = player.getPing();
         int online = Bukkit.getOnlinePlayers().size();
+        int maxOnline = Bukkit.getMaxPlayers();
         String tps = String.format("%.2f", Math.min(Bukkit.getServer().getTPS()[0], 20.0));
-        String mspt = String.valueOf(tracker.getMspt());
+        String mspt = String.valueOf((int) SimpleTab.msptAvg20);
 
         if (SimpleTab.isAbsoluteVanishEnabled) {
             online = exceptVanishedPlayers(online);
@@ -39,6 +36,7 @@ public class UpdateTabUtil {
 
         input = input.replace("%ping%", String.valueOf(ping));
         input = input.replace("%online%", String.valueOf(online));
+        input = input.replace("%max_online%", String.valueOf(maxOnline));
         input = input.replace("%tps%", tps);
         input = input.replace("%mspt%", mspt);
 

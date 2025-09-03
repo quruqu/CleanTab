@@ -1,5 +1,6 @@
 name: SimpleTab
-version: '1.0.0'
+version: ${project.version}
+author: U_jun
 main: me.ujun.simpletab.SimpleTab
 api-version: '1.21'
 softdepend:

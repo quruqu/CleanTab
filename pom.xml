@@ -6,7 +6,7 @@
 
     <groupId>me.ujun</groupId>
     <artifactId>SimpleTab</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>SimpleTab</name>
@@ -56,8 +56,8 @@
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -69,11 +69,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>me.ujun</groupId>
-            <artifactId>absolutevanish</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/AbsoluteVanish-1.4.0.jar</systemPath>
+            <groupId>com.github.quruqu</groupId>
+            <artifactId>AbsoluteVanish</artifactId>
+            <version>1.5.0</version>
         </dependency>
     </dependencies>
 </project>

@@ -10,6 +10,7 @@ public class ConfigHandler {
 
     public static String header;
     public static String footer;
+    public static  int updateDuration;
 
     public ConfigHandler(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -30,6 +31,7 @@ public class ConfigHandler {
 
         header = config.getString("Header");
         footer = config.getString("Footer");
+        updateDuration = config.getInt("UpdateDuration");
     }
 
 }
