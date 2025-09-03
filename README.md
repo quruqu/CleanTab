@@ -1,5 +1,6 @@
 # SimpleTab
 A lightweight plugin that lets you customize your player tab.
+
 (This plugin was created to make AbsoluteVanish and tabs compatible.)
 
 
