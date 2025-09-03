@@ -10,8 +10,8 @@ A lightweight plugin that lets you customize your player tab.
 
 ## Commands
 ```
-/simpletab-reload
+/cleantab-reload
 ```
 
 ## Permissions
-- simpletab.reload : use the /simpletab-reload command
+- cleantab.reload : use the /cleantab-reload command
