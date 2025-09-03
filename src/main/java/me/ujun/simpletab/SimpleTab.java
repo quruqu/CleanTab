@@ -25,11 +25,8 @@ public final class SimpleTab extends JavaPlugin {
 
         if (Bukkit.getPluginManager().isPluginEnabled("AbsoluteVanish")) {
             isAbsoluteVanishEnabled = true;
+            Bukkit.getLogger().info("앱솔베니시 로드 완료");
         }
-
-        Bukkit.getScheduler().runTaskTimer(this, () -> {
-            msptAvg20  = MsptUtil.averageMspt(20);   // 최근 1초 평균
-        }, 1L, 5L);
 
         registerListeners();
         registerCommands();
@@ -52,6 +49,7 @@ public final class SimpleTab extends JavaPlugin {
             @Override
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
+                    msptAvg20  = MsptUtil.averageMspt(20);
                     tabUtil.sendTabHeaderFooter(p);
                 }
             }

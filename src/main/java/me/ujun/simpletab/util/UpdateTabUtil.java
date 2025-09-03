@@ -19,7 +19,7 @@ public class UpdateTabUtil {
         header = replacePlaceHolders(header, player);
         footer = replacePlaceHolders(footer, player);
 
-     player.setPlayerListHeaderFooter(header, footer);
+        player.setPlayerListHeaderFooter(header, footer);
     }
 
 
@@ -31,6 +31,7 @@ public class UpdateTabUtil {
         String mspt = String.valueOf((int) SimpleTab.msptAvg20);
 
         if (SimpleTab.isAbsoluteVanishEnabled) {
+            Bukkit.getLogger().info("앱솔베니시 일단 로드됨");
             online = exceptVanishedPlayers(online);
         }
 
@@ -48,6 +49,7 @@ public class UpdateTabUtil {
     public static int exceptVanishedPlayers(int onlinePlayer) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (AbsoluteVanishAPI.isVanished(p)) {
+                Bukkit.getLogger().info("베니시 카운트 뺌");
                 onlinePlayer--;
             }
         }
