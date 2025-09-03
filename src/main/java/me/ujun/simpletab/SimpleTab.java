@@ -25,7 +25,6 @@ public final class SimpleTab extends JavaPlugin {
 
         if (Bukkit.getPluginManager().isPluginEnabled("AbsoluteVanish")) {
             isAbsoluteVanishEnabled = true;
-            Bukkit.getLogger().info("앱솔베니시 로드 완료");
         }
 
         registerListeners();
