@@ -1,6 +1,6 @@
-package me.ujun.simpletab.listener;
+package me.ujun.cleanTab.listener;
 
-import me.ujun.simpletab.util.UpdateTabUtil;
+import me.ujun.cleanTab.util.UpdateTabUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

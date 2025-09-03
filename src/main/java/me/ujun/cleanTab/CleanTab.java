@@ -1,20 +1,19 @@
-package me.ujun.simpletab;
+package me.ujun.cleanTab;
 
-import me.ujun.simpletab.command.ReloadCMD;
-import me.ujun.simpletab.config.ConfigHandler;
-import me.ujun.simpletab.listener.PlayerJoinListener;
-import me.ujun.simpletab.util.MsptUtil;
-import me.ujun.simpletab.util.UpdateTabUtil;
-import net.kyori.adventure.text.Component;
+import me.ujun.cleanTab.command.ReloadCMD;
+import me.ujun.cleanTab.config.ConfigHandler;
+import me.ujun.cleanTab.listener.PlayerJoinListener;
+import me.ujun.cleanTab.util.MsptUtil;
+import me.ujun.cleanTab.util.UpdateTabUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public final class SimpleTab extends JavaPlugin {
+public final class CleanTab extends JavaPlugin {
     public static boolean isAbsoluteVanishEnabled = false;
     private UpdateTabUtil tabUtil;
-    private static SimpleTab instance;
+    private static CleanTab instance;
 
 
     @Override
@@ -37,7 +36,7 @@ public final class SimpleTab extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("simpletab-reload").setExecutor(new ReloadCMD());
+        getCommand("cleantab-reload").setExecutor(new ReloadCMD());
     }
 
     public static double msptAvg20;
@@ -55,10 +54,9 @@ public final class SimpleTab extends JavaPlugin {
         }.runTaskTimer(this, 0L, ConfigHandler.updateDuration);
     }
 
-    public static SimpleTab getInstance() {
+    public static CleanTab getInstance() {
         return instance;
     }
-
 }
 
 

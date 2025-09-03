@@ -1,4 +1,4 @@
-package me.ujun.simpletab.util;
+package me.ujun.cleanTab.util;
 
 // MsptUtil.java
 import org.bukkit.Bukkit;

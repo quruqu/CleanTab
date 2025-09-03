@@ -1,16 +1,16 @@
-name: SimpleTab
+name: ${project.name}
 version: ${project.version}
 author: U_jun
-main: me.ujun.simpletab.SimpleTab
+main: me.ujun.cleanTab.CleanTab
 api-version: '1.21'
 softdepend:
   - AbsoluteVanish
 
 permissions:
-  simpletab.reload:
+  cleantab.reload:
     default: op
 
 commands:
-  simpletab-reload:
-    permission: simpletab.reload
-    usage: reload simpletab config
+  cleantab-reload:
+    permission: cleantab.reload
+    usage: reload tab config

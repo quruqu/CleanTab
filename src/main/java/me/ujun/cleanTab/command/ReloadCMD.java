@@ -1,6 +1,6 @@
-package me.ujun.simpletab.command;
+package me.ujun.cleanTab.command;
 
-import me.ujun.simpletab.config.ConfigHandler;
+import me.ujun.cleanTab.config.ConfigHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

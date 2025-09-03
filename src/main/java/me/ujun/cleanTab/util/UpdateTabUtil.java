@@ -1,7 +1,7 @@
-package me.ujun.simpletab.util;
+package me.ujun.cleanTab.util;
 
-import me.ujun.simpletab.SimpleTab;
-import me.ujun.simpletab.config.ConfigHandler;
+import me.ujun.cleanTab.CleanTab;
+import me.ujun.cleanTab.config.ConfigHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -28,9 +28,9 @@ public class UpdateTabUtil {
         int online = Bukkit.getOnlinePlayers().size();
         int maxOnline = Bukkit.getMaxPlayers();
         String tps = String.format("%.2f", Math.min(Bukkit.getServer().getTPS()[0], 20.0));
-        String mspt = String.valueOf((int) SimpleTab.msptAvg20);
+        String mspt = String.valueOf((int) CleanTab.msptAvg20);
 
-        if (SimpleTab.isAbsoluteVanishEnabled) {
+        if (CleanTab.isAbsoluteVanishEnabled) {
             online = exceptVanishedPlayers(online);
         }
 

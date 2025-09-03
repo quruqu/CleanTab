@@ -1,4 +1,4 @@
-package me.ujun.simpletab.config;
+package me.ujun.cleanTab.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
